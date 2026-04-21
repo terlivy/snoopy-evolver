@@ -38,14 +38,19 @@ snoopy-evolver/
 ├── SKILL.md                    # OpenClaw Skill 入口
 ├── ops/
 │   └── health_check.py         # P0: 6项健康检查矩阵
-└── evolver/
-    ├── genes/
-    │   └── genes.json          # P1: 基因库（19条基因，12类别）
-    ├── selector.py              # P1: 信号→基因选择器
-    ├── events/
-    │   ├── logger.py            # P2: EvolutionEvent 审计日志
-    │   └── events.jsonl        # P2: 审计记录
-    └── clawteam_integration.py # P3: ClawTeam 跨Agent共享
+├── evolver/
+│   ├── genes/
+│   │   └── genes.json          # P1: 基因库（19条基因，12类别）
+│   ├── selector.py              # P1: 信号→基因选择器
+│   ├── events/
+│   │   ├── logger.py            # P2: EvolutionEvent 审计日志
+│   │   └── events.jsonl        # P2: 审计记录
+│   └── clawteam_integration.py # P3: ClawTeam 跨Agent共享
+└── agent_tracker/                 # Agent性能数据收集（新增）
+    ├── models.py                # 数据模型
+    ├── tracker.py               # 追踪器
+    ├── analytics.py             # 性能分析
+    └── cli.py                   # CLI工具
 ```
 
 ---
@@ -213,6 +218,90 @@ events = logger.query(type="gene_applied", limit=10)
 | `clawteam` | 跨Agent经验共享 |
 | `system-healer` | 基因驱动自愈（替代硬编码） |
 | SAS v1.7 | EvolutionEvent 增强任务归档 |
+
+---
+
+## 📊 agent_tracker: Agent 性能数据收集
+
+**解决核心问题**：sas-leader 派发子Agent后，没有记录用了什么模型、成功率多少、Token消耗多少。
+
+### 解决的问题
+
+| 维度 | 原来 | 现在 |
+|------|------|------|
+| 模型追踪 | ❌ 不知道 | ✅ 记录每次派发的模型 |
+| 任务成功率 | ❌ 不知道 | ✅ 完成/失败记录 |
+| Token消耗 | ❌ 不知道 | ✅ 每次派发记录 |
+| 质量评分 | ❌ 没有 | ✅ 可选评分 |
+| 最佳模型推荐 | ❌ 随机分配 | ✅ 按历史数据推荐 |
+
+### 使用方式
+
+```python
+from agent_tracker import log_spawn, log_completion
+
+# 派发时记录
+record = log_spawn(
+    parent_agent="sas-leader",
+    child_agent_label="coder",
+    model_used="minimax/MiniMax-M2.7",
+    task_description="实现健康检查模块",
+    task_type="coding",
+    complexity="L2",
+    spawning_method="sessions_spawn"
+)
+
+# 任务完成时更新
+log_completion(
+    spawn_id=record.spawn_id,
+    success=True,
+    quality_score=8.5,
+    duration_seconds=180,
+    tokens_in=15000,
+    tokens_out=3000,
+    total_cost=0.023
+)
+```
+
+### CLI 工具
+
+```bash
+# 记录派发
+python3 -m agent_tracker.cli spawn sas-leader coder minimax/MiniMax-M2.7 "实现健康检查" coding --complexity L2
+
+# 记录完成
+python3 -m agent_tracker.cli complete <spawn_id> --success --score 8.5 --duration 180
+
+# 查看汇总
+python3 -m agent_tracker.cli summary
+
+# 模型排名
+python3 -m agent_tracker.cli ranking
+
+# 生成报告
+python3 -m agent_tracker.cli report
+```
+
+### 分析功能
+
+```python
+from agent_tracker.analytics import AgentAnalytics
+
+analytics = AgentAnalytics()
+
+# 模型综合排名
+print(analytics.get_model_ranking())
+
+# 任务类型最佳匹配
+print(analytics.get_task_type_analysis())
+
+# 生成优化建议
+print(analytics.generate_recommendations())
+```
+
+### 数据文件
+
+每次派发和完成都会追加到 `agent_tracker/agent_spawn_log.jsonl`
 
 ---
 
