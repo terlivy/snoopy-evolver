@@ -8,11 +8,8 @@ snoopy-evolver/evolver/signals.py
 2. heartbeat轮询signal文件
 3. 有signal才触发演化检查
 4. 处理完清除signal
-
-无信号时：跳过处理，零开销
 """
 
-import os
 import json
 import glob
 from pathlib import Path
@@ -21,7 +18,6 @@ from datetime import datetime
 SIGNALS_DIR = Path.home() / ".openclaw" / "evolver" / "signals"
 SIGNALS_DIR.mkdir(parents=True, exist_ok=True)
 
-# Signal 文件类型
 SIGNALS = {
     "git_push": "Git push 操作",
     "task_complete": "任务完成",
@@ -41,18 +37,18 @@ def write_signal(signal_type: str, metadata: dict = None) -> None:
         "metadata": metadata or {}
     }
     with open(signal_file, "w") as f:
-        json.dump(data, f, ensure_ascii=False)
-    print(f"[Signal] {signal_type} signal written")
+        json.dump(data, f)
 
 def read_signals() -> list:
     """读取所有待处理的信号"""
     signals = []
-    for sf in glob.glob(str(SIGNALS_DIR / "*.signal")):
-        with open(sf) as f:
-            try:
+    pattern = str(SIGNALS_DIR / "*.signal")
+    for sf in glob.glob(pattern):
+        try:
+            with open(sf) as f:
                 signals.append(json.load(f))
-            except:
-                pass
+        except:
+            pass
     return signals
 
 def clear_signal(signal_type: str) -> None:
@@ -63,13 +59,16 @@ def clear_signal(signal_type: str) -> None:
 
 def clear_all_signals() -> None:
     """清除所有信号"""
-    for sf in glob.glob(str(SIGNALS_DIR / "*.signal")):
+    pattern = str(SIGNALS_DIR / "*.signal")
+    for sf in glob.glob(pattern):
         Path(sf).unlink()
 
 def has_signals() -> bool:
     """检查是否有待处理信号"""
-    return len(glob.glob(str(SIGNALS_DIR / "*.signal")) > 0
+    pattern = str(SIGNALS_DIR / "*.signal")
+    return len(glob.glob(pattern)) > 0
 
 def get_signal_count() -> int:
     """返回待处理信号数量"""
-    return len(glob.glob(str(SIGNALS_DIR / "*.signal")))
+    pattern = str(SIGNALS_DIR / "*.signal")
+    return len(glob.glob(pattern))
