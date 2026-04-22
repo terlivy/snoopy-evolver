@@ -27,7 +27,7 @@ from evolver.events.logger import log_event
 
 # 基因选择器
 try:
-    from evolver.genes.selector import select_genes_for_signals
+    from evolver.selector import GeneSelector
     HAS_SELECTOR = True
 except ImportError:
     HAS_SELECTOR = False
@@ -82,14 +82,18 @@ class EvolutionWrapper:
 
             try:
                 # 1. 记录事件
-                log_event(signal_type, metadata)
+                log_event(signal_type, **metadata)
                 print(f"[Wrapper] Logged event: {signal_type}")
 
                 # 2. 选择相关基因
                 genes_selected = []
                 if HAS_SELECTOR:
-                    genes_selected = select_genes_for_signals(signal_type)
-                    print(f"[Wrapper] Genes matched: {len(genes_selected)}")
+                    try:
+                        selector = GeneSelector()
+                        genes_selected = selector.select([signal_type])
+                        print(f"[Wrapper] Genes matched: {len(genes_selected)}")
+                    except Exception as e:
+                        print(f"[Wrapper] Selector error: {e}")
 
                 # 3. 分析信号（如有 analyzer）
                 analysis_result = None

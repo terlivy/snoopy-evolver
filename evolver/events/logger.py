@@ -151,15 +151,30 @@ class EventLogger:
     ) -> bool:
         """
         简洁日志记录接口
-        
         Args:
-            event_type: 事件类型（来自 EventType 或字符串）
-            **kwargs: 其他字段
+            event_type: 事件类型
+            **kwargs: 其他字段（自动过滤并放入 context）
         """
+        # EvolutionEvent 有效字段
+        VALID_FIELDS = {
+            'ts', 'type', 'task_id', 'phase', 'agent_id',
+            'outcome', 'duration_ms', 'gene_id', 'gene_name',
+            'tokens_used', 'success_rate', 'context', 'mode', 'tags'
+        }
+
+        # 分离有效参数和额外参数
+        valid_kwargs = {k: v for k, v in kwargs.items() if k in VALID_FIELDS}
+        extra_kwargs = {k: v for k, v in kwargs.items() if k not in VALID_FIELDS}
+
+        # 额外参数放入 context
+        if extra_kwargs:
+            valid_kwargs['context'] = dict(valid_kwargs.get('context', {}))
+            valid_kwargs['context'].update(extra_kwargs)
+
         event = EvolutionEvent(
             ts=datetime.now().isoformat() + "+08:00",
             type=event_type,
-            **kwargs
+            **valid_kwargs
         )
         return self.log(event)
     
