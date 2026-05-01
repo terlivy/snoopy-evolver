@@ -1,3 +1,7 @@
 {"ts": "2026-04-21T23:40:11.196933+08:00", "type": "task_started", "task_id": "TEST-001", "mode": "balanced"}
 {"ts": "2026-04-21T23:40:11.197067+08:00", "type": "gene_applied", "gene_id": "gene_spawn_template", "gene_name": "子智能体 Spawn 模板"}
 {"ts": "2026-04-21T23:40:11.197158+08:00", "type": "task_completed", "task_id": "TEST-001", "outcome": "success"}
+{"ts": "2026-05-02T00:44:00.237013+08:00", "type": "subagent_spawned"}
+{"ts": "2026-05-02T00:44:00.237201+08:00", "type": "subagent_spawned"}
+{"ts": "2026-05-02T01:13:50.293172+08:00", "type": "subagent_spawned"}
+{"ts": "2026-05-02T01:13:50.293341+08:00", "type": "subagent_spawned"}
