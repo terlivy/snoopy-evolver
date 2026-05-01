@@ -1,0 +1,669 @@
+# Skill Inventory - SC Skill Router Phase 1
+# Updated: 2026-04-22
+# Source: awesome-openclaw-skills analysis + workspace/skills scan
+# Note: 数据边用边补，持续迭代
+
+skill_inventory:
+
+  # ============================================================
+  # 流程管理 (Process Management)
+  # ============================================================
+  - name: "sas-default"
+    category: "流程管理"
+    trigger_words: ["SAS准则", "SAS执行", "六阶段", "阶段门", "SAS任务", "执行铁律"]
+    description: "SAS工作准则执行引擎 — 六阶段门控流水线、CEO模式、L1/L2/L3复杂度分级"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/sas-default"
+    source: "workspace"
+    reliability: 0.95
+
+  - name: "sas-task-planner"
+    category: "流程管理"
+    trigger_words: ["SAS任务规划", "任务分解", "执行计划"]
+    description: "SAS任务分解与规划，生成可执行的子任务列表"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/sas-task-planner"
+    source: "workspace"
+    reliability: 0.90
+
+  - name: "task-planner"
+    category: "流程管理"
+    trigger_words: ["任务规划", "日程", "待办", "/plan", "今日计划"]
+    description: "通用任务计划管理，生成每日计划和追踪交付"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/task-planner"
+    source: "workspace"
+    reliability: 0.85
+
+  - name: "harness-leader"
+    category: "流程管理"
+    trigger_words: ["SAS任务派发", "多Agent协调", "Leader派发"]
+    description: "SAS模式下的Leader Agent协调，负责任务分配和进度监控"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/harness-leader"
+    source: "workspace"
+    reliability: 0.90
+
+  # ============================================================
+  # 多Agent协作 (Multi-Agent Collaboration)
+  # ============================================================
+  - name: "clawteam"
+    category: "多Agent协作"
+    trigger_words: ["team", "swarm", "multi-agent", "spawn agents", "多Agent协作", "团队编排"]
+    description: "多Agent协作编排，基于git worktree + tmux实现隔离执行环境"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/clawteam"
+    source: "workspace"
+    reliability: 0.85
+
+  - name: "agent-team-orchestration"
+    category: "多Agent协作"
+    trigger_words: ["multi-agent", "团队编排", "角色分配", "handoff协议", "agent角色"]
+    description: "多Agent角色定义+任务生命周期+handoff协议（awesome推荐）"
+    skill_path: "clawhub: multi-agent-agent-team-orchestration"
+    source: "awesome"
+    reliability: 0.80
+    note: "待安装，高价值推荐"
+
+  - name: "agentdo"
+    category: "多Agent协作"
+    trigger_words: ["任务队列", "Agent协作", "工单", "分布式任务", "agentdo"]
+    description: "分布式Agent任务队列，基于agentdo.dev平台"
+    skill_path: "clawhub: agentdo"
+    source: "awesome"
+    reliability: 0.80
+    note: "待安装"
+
+  # ============================================================
+  # 博士后管理 (Postdoc Management)
+  # ============================================================
+  - name: "postdoc-recruit"
+    category: "博士后管理"
+    trigger_words: ["招聘博士后", "入职手续", "合同模板", "博士后招聘"]
+    description: "博士后招聘JD生成、入职手续全流程"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/postdoc-recruit"
+    source: "workspace"
+    reliability: 0.95
+
+  - name: "postdoc-policy"
+    category: "博士后管理"
+    trigger_words: ["博士后政策", "制度", "规定", "博士后管理"]
+    description: "博士后政策查询与解读"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/postdoc-policy"
+    source: "workspace"
+    reliability: 0.95
+
+  - name: "postdoc-cnas"
+    category: "博士后管理"
+    trigger_words: ["CNAS认证", "实验室认可", "CNAS"]
+    description: "CNAS实验室认证管理"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/postdoc-cnas"
+    source: "workspace"
+    reliability: 0.90
+
+  - name: "postdoc-director"
+    category: "博士后管理"
+    trigger_words: ["博士后工作站", "工作站管理", "负责人"]
+    description: "博士后工作站负责人相关事务"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/postdoc-director"
+    source: "workspace"
+    reliability: 0.90
+
+  - name: "postdoc-project"
+    category: "博士后管理"
+    trigger_words: ["项目申报", "项目管理", "科研项目"]
+    description: "科研项目全周期管理"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/postdoc-project"
+    source: "workspace"
+    reliability: 0.90
+
+  - name: "postdoc-ip"
+    category: "博士后管理"
+    trigger_words: ["知识产权", "专利", "软件著作权"]
+    description: "知识产权管理（专利、软著）"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/postdoc-ip"
+    source: "workspace"
+    reliability: 0.90
+
+  - name: "postdoc-anticheat"
+    category: "博士后管理"
+    trigger_words: ["查重", "学术不端", "论文检测", "学术诚信"]
+    description: "学术不端行为检测"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/postdoc-anticheat"
+    source: "workspace"
+    reliability: 0.90
+
+  # ============================================================
+  # 文档处理 (Document Processing)
+  # ============================================================
+  - name: "excel-xlsx"
+    category: "文档处理"
+    trigger_words: ["Excel", "xlsx", "电子表格", "Excel读取", "Excel写入"]
+    description: "Excel XLSX读写操作"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/excel-xlsx"
+    source: "workspace"
+    reliability: 0.90
+
+  - name: "word-docx"
+    category: "文档处理"
+    trigger_words: ["Word", "DOCX", "文档", "Word文档", "docx生成"]
+    description: "Word DOCX文档操作（生成、编辑）"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/word-docx"
+    source: "workspace"
+    reliability: 0.90
+
+  - name: "powerpoint-pptx"
+    category: "文档处理"
+    trigger_words: ["PPT", "PowerPoint", "演示文稿", "pptx"]
+    description: "PowerPoint PPTX生成与编辑"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/powerpoint-pptx"
+    source: "workspace"
+    reliability: 0.85
+
+  - name: "doc-handler"
+    category: "文档处理"
+    trigger_words: ["文档", "PDF", "办公文档", "文档转换"]
+    description: "通用文档处理（PDF、Office文档格式转换）"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/doc-handler"
+    source: "workspace"
+    reliability: 0.85
+
+  - name: "official-document"
+    category: "文档处理"
+    trigger_words: ["公文", "红头文件", "官方文件", "行政公文"]
+    description: "行政公文格式模板生成"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/official-document"
+    source: "workspace"
+    reliability: 0.85
+
+  # ============================================================
+  # 飞书集成 (Feishu/Lark Integration)
+  # ============================================================
+  - name: "feishu-doc"
+    category: "飞书"
+    trigger_words: ["飞书文档", "云文档", "飞书云文档"]
+    description: "飞书文档读写操作"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/dist/extensions/feishu/skills/feishu-doc"
+    source: "builtin"
+    reliability: 0.90
+
+  - name: "feishu-wiki"
+    category: "飞书"
+    trigger_words: ["飞书Wiki", "知识库", "飞书知识库"]
+    description: "飞书Wiki操作"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/dist/extensions/feishu/skills/feishu-wiki"
+    source: "builtin"
+    reliability: 0.90
+
+  - name: "feishu-drive"
+    category: "飞书"
+    trigger_words: ["飞书云盘", "文件", "飞书文件"]
+    description: "飞书云盘文件操作"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/dist/extensions/feishu/skills/feishu-drive"
+    source: "builtin"
+    reliability: 0.85
+
+  - name: "feishu-perm"
+    category: "飞书"
+    trigger_words: ["飞书权限", "访问控制", "文档权限"]
+    description: "飞书文档权限管理"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/dist/extensions/feishu/skills/feishu-perm"
+    source: "builtin"
+    reliability: 0.85
+
+  - name: "feishu-bitable"
+    category: "飞书"
+    trigger_words: ["飞书多维表格", "Bitable", "bitable"]
+    description: "飞书多维表格创建、查询、编辑"
+    skill_path: "~/.openclaw/extensions/openclaw-lark/skills/feishu-bitable"
+    source: "extension"
+    reliability: 0.90
+
+  - name: "feishu-calendar"
+    category: "飞书"
+    trigger_words: ["飞书日历", "会议日程", "日历事件"]
+    description: "飞书日历操作（创建/查询/修改日历事件）"
+    skill_path: "~/.openclaw/extensions/openclaw-lark/skills/feishu-calendar"
+    source: "extension"
+    reliability: 0.85
+
+  - name: "feishu-bitable-creator"
+    category: "飞书"
+    trigger_words: ["飞书多维表格创建", "bitable新建"]
+    description: "创建+填充飞书Bitable自动清理（awesome推荐）"
+    skill_path: "clawhub: autogame-17/feishu-bitable-creator"
+    source: "awesome"
+    reliability: 0.80
+    note: "待安装"
+
+  - name: "feishu-meeting-assistant"
+    category: "飞书"
+    trigger_words: ["飞书会议", "会议助手", "会议文档"]
+    description: "扫描飞书日历+读取会议附件内容（awesome推荐）"
+    skill_path: "clawhub: autogame-17/feishu-meeting-assistant"
+    source: "awesome"
+    reliability: 0.80
+    note: "待安装"
+
+  # ============================================================
+  # 数据爬取 (Data Scraping)
+  # ============================================================
+  - name: "playwright-scraper-skill"
+    category: "数据爬取"
+    trigger_words: ["爬虫", "动态网页", "云flare", "网页抓取", "playwright"]
+    description: "爬虫框架（Simple/Stealth双模式），支持反检测浏览器"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/playwright-scraper-skill"
+    source: "workspace"
+    reliability: 0.85
+
+  - name: "mootdx-china-stock-data"
+    category: "数据爬取"
+    trigger_words: ["A股", "实时行情", "股票数据", "中国市场", "TDX", "mootdx"]
+    description: "A股实时行情（TDX协议），支持1分钟K线、实时分时数据"
+    skill_path: "clawhub: wangdinglu/a-share-real-time-data"
+    source: "awesome"
+    reliability: 0.80
+    note: "待安装，极高优先级"
+
+  - name: "cls-news-scraper"
+    category: "数据爬取"
+    trigger_words: ["财联社", "CLS新闻", "实时市场新闻", "财联社新闻"]
+    description: "实时抓取财联社新闻+提取股票催化剂（awesome推荐）"
+    skill_path: "clawhub: cls-news-scraper"
+    source: "awesome"
+    reliability: 0.75
+    note: "待安装"
+
+  - name: "camoufox"
+    category: "数据爬取"
+    trigger_words: ["反检测浏览器", "camoufox", "自动化浏览器"]
+    description: "Camoufox反检测Firefox自动化（awesome推荐）"
+    skill_path: "clawhub: camoufox"
+    source: "awesome"
+    reliability: 0.75
+    note: "待安装"
+
+  # ============================================================
+  # 搜索与研究 (Search & Research)
+  # ============================================================
+  - name: "websearch"
+    category: "搜索研究"
+    trigger_words: ["搜索", "网络搜索", "网页搜索", "search"]
+    description: "通用网页搜索"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/websearch"
+    source: "workspace"
+    reliability: 0.80
+
+  - name: "tavily"
+    category: "搜索研究"
+    trigger_words: ["Tavily", "AI搜索", "深度搜索", "研究搜索"]
+    description: "Tavily AI搜索（深度研究用）"
+    skill_path: "~/.openclaw/extensions/tavily"
+    source: "extension"
+    reliability: 0.80
+
+  - name: "ak-rss-24h-brief"
+    category: "搜索研究"
+    trigger_words: ["RSS", "简报", "资讯汇总", "OPML", "24小时简报"]
+    description: "OPML订阅24小时中文分类简报（awesome推荐）"
+    skill_path: "clawhub: seandong/ak-rss-24h-brief"
+    source: "awesome"
+    reliability: 0.75
+    note: "待安装"
+
+  - name: "arxiv-search-collector"
+    category: "搜索研究"
+    trigger_words: ["arXiv", "学术论文", "文献综述", "论文检索"]
+    description: "arXiv论文检索+文献集构建（awesome推荐）"
+    skill_path: "clawhub: arxiv-search-collector"
+    source: "awesome"
+    reliability: 0.75
+    note: "待安装"
+
+  # ============================================================
+  # 系统运维 (System Operations)
+  # ============================================================
+  - name: "system-healer"
+    category: "系统运维"
+    trigger_words: ["heal gateway", "fix gateway", "restart gateway", "网关自愈", "OpenClaw修复"]
+    description: "OpenClaw Gateway自愈与健康检查"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/system-healer"
+    source: "workspace"
+    reliability: 0.90
+
+  - name: "agent-lifecycle"
+    category: "系统运维"
+    trigger_words: ["agent生命周期", "快照", "回滚", "agent快照"]
+    description: "Agent状态快照+对比+回滚（awesome推荐）"
+    skill_path: "clawhub: trypto1019/arc-agent-lifecycle"
+    source: "awesome"
+    reliability: 0.75
+    note: "待安装"
+
+  - name: "agentaudit-skill"
+    category: "系统运维"
+    trigger_words: ["安全审计", "npm install", "依赖检查", "skill审计"]
+    description: "npm/pip安装前安全门控（awesome推荐）"
+    skill_path: "clawhub: starbuck100/agentaudit-skill"
+    source: "awesome"
+    reliability: 0.80
+    note: "待安装，极高优先级"
+
+  - name: "arc-trust-verifier"
+    category: "系统运维"
+    trigger_words: ["信任验证", "技能来源", "ClawHub验证"]
+    description: "ClawHub skill来源验证+信任分（awesome推荐）"
+    skill_path: "clawhub: trypto1019/arc-trust-verifier"
+    source: "awesome"
+    reliability: 0.75
+    note: "待安装"
+
+  # ============================================================
+  # 记忆系统 (Memory System)
+  # ============================================================
+  - name: "memory-lancedb-pro"
+    category: "记忆系统"
+    trigger_words: ["记忆存储", "向量检索", "长期记忆", "向量数据库"]
+    description: "LanceDB向量记忆系统，支持混合检索"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/memory-lancedb-pro"
+    source: "workspace"
+    reliability: 0.85
+
+  - name: "agent-task-tracker"
+    category: "记忆系统"
+    trigger_words: ["任务状态", "进度跟踪", "任务持久化"]
+    description: "持久化任务状态管理（跨session存活）（awesome推荐）"
+    skill_path: "clawhub: agent-task-tracker"
+    source: "awesome"
+    reliability: 0.80
+    note: "待安装"
+
+  - name: "session-wrap-up"
+    category: "记忆系统"
+    trigger_words: ["wrap up", "session总结", "收尾", "会话总结"]
+    description: "结束会话自动commit+提取经验+模式识别（awesome推荐）"
+    skill_path: "clawhub: session-wrap-up"
+    source: "awesome"
+    reliability: 0.75
+    note: "待安装"
+
+  # ============================================================
+  # 可视化 (Visualization)
+  # ============================================================
+  - name: "diagram-generator"
+    category: "可视化"
+    trigger_words: ["图表", "架构图", "流程图", "mermaid", "图表生成"]
+    description: "图表生成（支持Mermaid、PlantUML等）"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/diagram-generator"
+    source: "workspace"
+    reliability: 0.85
+
+  - name: "frontend-design-3"
+    category: "可视化"
+    trigger_words: ["前端设计", "UI", "React", "前端UI"]
+    description: "前端UI设计（React组件）"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/frontend-design-3"
+    source: "workspace"
+    reliability: 0.80
+
+  # ============================================================
+  # 开发工具 (Development Tools)
+  # ============================================================
+  - name: "workspace-manager"
+    category: "开发工具"
+    trigger_words: ["workspace", "环境", "项目", "工作区"]
+    description: "工作区管理（环境切换、项目组织）"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/workspace-manager"
+    source: "workspace"
+    reliability: 0.85
+
+  - name: "self-improving-agent"
+    category: "开发工具"
+    trigger_words: ["自我提升", "自改进", "agent改进"]
+    description: "Agent自改进机制（基于执行反馈）"
+    skill_path: "/home/openclaw/.openclaw/workspace/skills/self-improving-agent"
+    source: "workspace"
+    reliability: 0.80
+
+  # ============================================================
+  # 通信 (Communication)
+  # ============================================================
+  - name: "feishu-im-read"
+    category: "通信"
+    trigger_words: ["飞书消息", "飞书IM", "读取消息"]
+    description: "读取飞书IM消息"
+    skill_path: "~/.openclaw/extensions/openclaw-lark/skills/feishu-im-read"
+    source: "extension"
+    reliability: 0.85
+
+  - name: "feishu-update-doc"
+    category: "通信"
+    trigger_words: ["更新飞书文档", "飞书文档更新"]
+    description: "更新飞书文档内容"
+    skill_path: "~/.openclaw/extensions/openclaw-lark/skills/feishu-update-doc"
+    source: "extension"
+    reliability: 0.85
+
+  - name: "feishu-create-doc"
+    category: "通信"
+    trigger_words: ["创建飞书文档", "新建飞书文档"]
+    description: "创建飞书文档"
+    skill_path: "~/.openclaw/extensions/openclaw-lark/skills/feishu-create-doc"
+    source: "extension"
+    reliability: 0.85
+
+  - name: "feishu-channel-rules"
+    category: "通信"
+    trigger_words: ["飞书频道规则", "channel rules", "飞书规则"]
+    description: "飞书频道规则管理"
+    skill_path: "~/.openclaw/extensions/openclaw-lark/skills/feishu-channel-rules"
+    source: "extension"
+    reliability: 0.80
+
+  - name: "feishu-task"
+    category: "通信"
+    trigger_words: ["飞书任务", "任务管理", "飞书任务管理"]
+    description: "飞书任务创建和管理"
+    skill_path: "~/.openclaw/extensions/openclaw-lark/skills/feishu-task"
+    source: "extension"
+    reliability: 0.85
+
+  # ============================================================
+  # 知识管理 (Knowledge Management)
+  # ============================================================
+  - name: "wiki-maintainer"
+    category: "知识管理"
+    trigger_words: ["知识库维护", "Wiki维护", "wiki-maintainer"]
+    description: "Wiki维护（awesome内置）"
+    skill_path: "~/.openclaw/extensions/wiki-maintainer"
+    source: "builtin"
+    reliability: 0.80
+
+  - name: "obsidian-vault-maintainer"
+    category: "知识管理"
+    trigger_words: ["Obsidian", "笔记", "Obsidian笔记"]
+    description: "Obsidian笔记库维护（awesome内置）"
+    skill_path: "~/.openclaw/extensions/obsidian-vault-maintainer"
+    source: "builtin"
+    reliability: 0.75
+
+  # ============================================================
+  # 金融数据 (Financial Data)
+  # ============================================================
+  - name: "coingecko"
+    category: "金融数据"
+    trigger_words: ["加密货币", "价格", "市值", "CoinGecko", "比特币"]
+    description: "CoinGecko免费API查加密货币价格（awesome推荐）"
+    skill_path: "clawhub: coingecko"
+    source: "awesome"
+    reliability: 0.75
+    note: "待安装"
+
+  # ============================================================
+  # 其他 (Miscellaneous)
+  # ============================================================
+  - name: "weather"
+    category: "其他"
+    trigger_words: ["天气", "weather", "天气预报"]
+    description: "天气查询（内置skill）"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/skills/weather"
+    source: "builtin"
+    reliability: 0.90
+
+  - name: "nano-pdf"
+    category: "其他"
+    trigger_words: ["PDF", "pdf处理", "pdf转换"]
+    description: "PDF处理（内置skill）"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/skills/nano-pdf"
+    source: "builtin"
+    reliability: 0.85
+
+  - name: "video-frames"
+    category: "其他"
+    trigger_words: ["视频帧", "video frames", "视频分析"]
+    description: "视频帧提取和分析"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/skills/video-frames"
+    source: "builtin"
+    reliability: 0.80
+
+  - name: "node-connect"
+    category: "其他"
+    trigger_words: ["node连接", "node-connect", "节点连接"]
+    description: "Node.js连接管理"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/skills/node-connect"
+    source: "builtin"
+    reliability: 0.80
+
+  - name: "tmux"
+    category: "其他"
+    trigger_words: ["tmux", "终端会话", "terminal"]
+    description: "tmux会话管理"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/skills/tmux"
+    source: "builtin"
+    reliability: 0.85
+
+  - name: "gh-issues"
+    category: "其他"
+    trigger_words: ["GitHub Issues", "github issues", "issue管理"]
+    description: "GitHub Issues管理"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/skills/gh-issues"
+    source: "builtin"
+    reliability: 0.80
+
+  - name: "github"
+    category: "其他"
+    trigger_words: ["GitHub", "github", "PR", "仓库管理"]
+    description: "GitHub通用操作（PR、Issues、Repo）"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/skills/github"
+    source: "builtin"
+    reliability: 0.80
+
+  - name: "healthcheck"
+    category: "其他"
+    trigger_words: ["健康检查", "healthcheck", "系统健康"]
+    description: "系统健康检查"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/skills/healthcheck"
+    source: "builtin"
+    reliability: 0.85
+
+  - name: "skill-creator"
+    category: "其他"
+    trigger_words: ["创建skill", "skill创建", "skill-creator"]
+    description: "Skill创建工具"
+    skill_path: "~/.npm-global/lib/node_modules/openclaw/skills/skill-creator"
+    source: "builtin"
+    reliability: 0.80
+
+  - name: "graphify"
+    category: "其他"
+    trigger_words: ["图谱", "知识图谱", "graphify"]
+    description: "知识图谱构建（awesome内置）"
+    skill_path: "~/.openclaw/skills/graphify"
+    source: "builtin"
+    reliability: 0.75
+
+# ============================================================
+# Skill-Model Matrix (Phase 2 - 待tracker积累后完善)
+# ============================================================
+skill_model_matrix:
+  # 注意：以下数据基于经验估算，待tracker积累后验证和更新
+  # 格式：task_type → best_skill + best_model + success_rate + avg_tokens
+
+  - task_type: "SAS流程执行"
+    best_skill: "sas-default"
+    best_model: "MiniMax-M2.7-highspeed"
+    success_rate: 0.95
+    avg_tokens: 3000
+    note: "基于历史经验"
+
+  - task_type: "文档生成(Word)"
+    best_skill: "word-docx"
+    best_model: "DeepSeek-chat"
+    success_rate: 0.90
+    avg_tokens: 2500
+    note: "待tracker验证"
+
+  - task_type: "飞书文档读写"
+    best_skill: "feishu-doc"
+    best_model: "GLM-5-Turbo"
+    success_rate: 0.85
+    avg_tokens: 2000
+    note: "待tracker验证"
+
+  - task_type: "博士后招聘"
+    best_skill: "postdoc-recruit"
+    best_model: "DeepSeek-chat"
+    success_rate: 0.90
+    avg_tokens: 3000
+    note: "待tracker验证"
+
+  - task_type: "Excel读写"
+    best_skill: "excel-xlsx"
+    best_model: "DeepSeek-chat"
+    success_rate: 0.85
+    avg_tokens: 1500
+    note: "待tracker验证"
+
+  - task_type: "Gateway自愈"
+    best_skill: "system-healer"
+    best_model: "MiniMax-M2.7"
+    success_rate: 0.90
+    avg_tokens: 2000
+    note: "待tracker验证"
+
+  - task_type: "网页爬虫"
+    best_skill: "playwright-scraper-skill"
+    best_model: "MiniMax-M2.7"
+    success_rate: 0.80
+    avg_tokens: 4000
+    note: "待tracker验证"
+
+  - task_type: "通用搜索"
+    best_skill: "websearch"
+    best_model: "DeepSeek-chat"
+    success_rate: 0.85
+    avg_tokens: 1000
+    note: "待tracker验证"
+
+  - task_type: "PPT生成"
+    best_skill: "powerpoint-pptx"
+    best_model: "DeepSeek-chat"
+    success_rate: 0.80
+    avg_tokens: 3500
+    note: "待tracker验证"
+
+  - task_type: "前端UI设计"
+    best_skill: "frontend-design-3"
+    best_model: "MiniMax-M2.7"
+    success_rate: 0.75
+    avg_tokens: 5000
+    note: "待tracker验证"
+
+# ============================================================
+# 元信息
+# ============================================================
+metadata:
+  inventory_version: "1.0"
+  created: "2026-04-22"
+  last_updated: "2026-04-22"
+  total_skills: 50
+  installed_count: 36
+  awesome_recommended_count: 14
+  categories: 13
+  maintained_by: "SC (SnoopyClaw)"
+  next_update: "tracker积累100条数据后"

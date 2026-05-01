@@ -1,0 +1,19 @@
+{
+  "canonical": "/home/openclaw/.openclaw/workspace/snoopy_evolver",
+  "canonical_name": "snoopy_evolver",
+  "legacy": [
+    {
+      "path": "/home/openclaw/.openclaw/workspace/snoopy-evolver",
+      "status": "legacy",
+      "action": "\u4fdd\u7559\u4f46\u4e0d\u518d\u4f7f\u7528"
+    },
+    {
+      "path": "/home/openclaw/.openclaw/workspace/snoopy-evolver-git",
+      "status": "legacy",
+      "action": "\u4fdd\u7559\u4f46\u4e0d\u518d\u4f7f\u7528"
+    }
+  ],
+  "unrelated": [
+    "/home/openclaw/.openclaw/workspace/evolver-source"
+  ]
+}
